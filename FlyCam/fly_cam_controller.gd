@@ -1,10 +1,13 @@
 extends CharacterBody3D
 
-var forward : Vector3 = Vector3(0, 0, -1) # tracks the direction of "forward" as represented globally
-var right : Vector3 = Vector3(1, 0, 0)
+@export var forward : Vector3 = Vector3(0, 0, -1) # tracks the direction of "forward" as represented globally
+@export var right : Vector3 = Vector3(1, 0, 0)
 
 @export var movement_sensitivity : float = 3
 @export var speed_up_scale : float = 3
+
+@export var mouse_sensitivity : float = 0.005
+@export var mouse_captured : bool = false
 
 @onready var cam_node = get_node("Cam")
 
