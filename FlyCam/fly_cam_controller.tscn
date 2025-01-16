@@ -1,21 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://cgigqfys0eyju"]
+[gd_scene load_steps=7 format=3 uid="uid://cgigqfys0eyju"]
 
 [ext_resource type="Script" path="res://FlyCam/fly_cam_controller.gd" id="1_krqre"]
 [ext_resource type="Script" path="res://FlyCam/cam.gd" id="2_eokoq"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1dyv5"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_rjk1j"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_l1oui"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_htxtd"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_80c0y"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_cqmhb"]
 
 [node name="FlyCamController" type="CharacterBody3D"]
 script = ExtResource("1_krqre")
+movement_sensitivity = 5.0
+mesh_used = SubResource("CapsuleMesh_rjk1j")
+collision_shape_used = SubResource("CapsuleShape3D_htxtd")
 
 [node name="Cam" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.568253, 0)
 script = ExtResource("2_eokoq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_1dyv5")
+shape = SubResource("CapsuleShape3D_80c0y")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
-mesh = SubResource("CapsuleMesh_l1oui")
+mesh = SubResource("CapsuleMesh_cqmhb")
