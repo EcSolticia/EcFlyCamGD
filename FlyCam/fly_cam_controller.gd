@@ -1,14 +1,21 @@
 extends CharacterBody3D
 
-var forward : Vector3 = Vector3(0, 0, -1) # tracks the global direction of "forward"
+var forward : Vector3 = Vector3(0, 0, -1) # tracks the direction of "forward" as represented globally
 var right : Vector3 = Vector3(1, 0, 0)
 
-@export var movement_sensitivity : float = 1
-@export var speed_up_scale : float = 2
+@export var movement_sensitivity : float = 3
+@export var speed_up_scale : float = 3
 
 @onready var cam_node = get_node("Cam")
 
 func _physics_process(delta: float) -> void:
+	
+	# reset velocity
+	velocity = Vector3()
+	
+	# updates "forward" and "right"
+	forward = -get_global_transform().basis.z
+	right = get_global_transform().basis.x
 	
 	# handle input
 	var dir : Vector3 = Vector3()
@@ -21,6 +28,10 @@ func _physics_process(delta: float) -> void:
 		dir += right
 	if Input.is_action_pressed("Left"):
 		dir -= right
+	if Input.is_action_pressed("Up"):
+		dir += Vector3.UP
+	if Input.is_action_pressed("Down"):
+		dir += Vector3.DOWN
 	if Input.is_action_pressed("Speed Up"):
 		speed_up = true
 	

@@ -16,3 +16,8 @@ mono_crash.*.json
 
 # Temporary files
 *.tmp
+
+# 3D Models and related files used while testing
+*.mtl
+*.obj
+*.import
