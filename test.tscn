@@ -1,14 +1,36 @@
-[gd_scene load_steps=5 format=3 uid="uid://7ljkwicrss2g"]
+[gd_scene load_steps=11 format=3 uid="uid://7ljkwicrss2g"]
 
 [ext_resource type="PackedScene" uid="uid://cgigqfys0eyju" path="res://FlyCam/fly_cam_controller.tscn" id="1_3pdu4"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nedrq"]
+albedo_color = Color(0.894419, 0.602752, 0.162701, 1)
+
 [sub_resource type="PrismMesh" id="PrismMesh_5k3jb"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0vq2f"]
+albedo_color = Color(0.305882, 1, 1, 1)
+
 [sub_resource type="SphereMesh" id="SphereMesh_tjs2t"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s8q4w"]
+albedo_color = Color(0.905882, 0, 0, 1)
 
 [sub_resource type="TextMesh" id="TextMesh_ox37s"]
 text = "Hello, World!"
 font_size = 64
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_csylx"]
+albedo_color = Color(0, 0.501961, 0.235294, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_v4c26"]
+
+[sub_resource type="Environment" id="Environment_8h3ur"]
+background_mode = 1
+background_color = Color(0, 0.396078, 0.666667, 1)
+glow_intensity = 0.79
+glow_bloom = 1.0
+glow_hdr_threshold = 1.11
+glow_hdr_luminance_cap = 4.79
 
 [node name="Test" type="Node3D"]
 
@@ -16,15 +38,27 @@ font_size = 64
 
 [node name="Prism" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.25391)
+material_override = SubResource("StandardMaterial3D_nedrq")
 mesh = SubResource("PrismMesh_5k3jb")
 
 [node name="Sphere" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.17157)
+material_override = SubResource("StandardMaterial3D_0vq2f")
 mesh = SubResource("SphereMesh_tjs2t")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(2.98023e-08, 0, 1, 0, 1, 0, -1, 0, 2.98023e-08, -6.09179, 0, 0)
+material_override = SubResource("StandardMaterial3D_s8q4w")
 mesh = SubResource("TextMesh_ox37s")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.963961, -0.160669, 0.21205, 0, 0.797047, 0.603918, -0.266044, -0.582153, 0.768322, 0, 0, 0)
+transform = Transform3D(0.493502, -0.525254, 0.693227, 2.18307e-08, 0.797047, 0.603917, -0.869745, -0.298034, 0.393344, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Plane" type="MeshInstance3D" parent="."]
+transform = Transform3D(19.1014, 0, 0, 0, 1, 0, 0, 0, 14.04, 0, -1.82841, 0)
+material_override = SubResource("StandardMaterial3D_csylx")
+mesh = SubResource("PlaneMesh_v4c26")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8h3ur")

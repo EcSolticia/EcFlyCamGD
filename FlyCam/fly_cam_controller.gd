@@ -12,9 +12,11 @@ extends CharacterBody3D
 @onready var cam_node = get_node("Cam")
 
 @export var mesh_used : Mesh
+@export var mesh_visible_in_game : bool = false
 @export var collision_shape_used : Shape3D
 func _ready() -> void:
 	get_node("CollisionShape3D/MeshInstance3D").mesh = mesh_used
+	get_node("CollisionShape3D/MeshInstance3D").visible = mesh_visible_in_game
 	get_node("CollisionShape3D").shape = collision_shape_used
 	get_node("CollisionShape3D").disabled = true
 
